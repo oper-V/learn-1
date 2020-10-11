@@ -113,6 +113,36 @@ public final class ArrayCollection<T> implements Collection<T> {
 
     private class ElementsIterator implements Iterator<T> {
         // BEGIN (write your solution here)
+        int index = 0;
+        int countRemove = 0;
+
+        @Override
+        public boolean hasNext() {
+            return ArrayCollection.this.size() > index;
+        }
+
+        @Override
+        public T next() {
+            if (hasNext() == false) {
+                throw new NoSuchElementException();
+            }
+            if(countRemove != 0) {
+                throw new IllegalStateException();
+            }
+            return (T) ArrayCollection.this.m[index++];
+        }
+
+        @Override
+        public void remove() {
+            if(countRemove != 0) {
+                throw new IllegalStateException();
+            }
+            ArrayCollection.this.remove(m[index-1]);
+            countRemove++;
+
+
+        }
+
 
         // END
     }
