@@ -114,7 +114,7 @@ public final class ArrayCollection<T> implements Collection<T> {
     private class ElementsIterator implements Iterator<T> {
         // BEGIN (write your solution here)
         int index = 0;
-        int countRemove = 0;
+        int countRemove = -1;
 
         @Override
         public boolean hasNext() {
@@ -123,13 +123,16 @@ public final class ArrayCollection<T> implements Collection<T> {
 
         @Override
         public T next() {
-            if (hasNext() == false) {
+            countRemove = 0;
+            if (!hasNext()) {
                 throw new NoSuchElementException();
             }
             if(countRemove != 0) {
                 throw new IllegalStateException();
             }
-            return (T) ArrayCollection.this.m[index++];
+
+            return ArrayCollection.this.m[index++];
+
         }
 
         @Override
@@ -138,6 +141,8 @@ public final class ArrayCollection<T> implements Collection<T> {
                 throw new IllegalStateException();
             }
             ArrayCollection.this.remove(m[index-1]);
+            index--;
+
             countRemove++;
 
 
