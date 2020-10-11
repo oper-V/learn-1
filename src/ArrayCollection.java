@@ -1,10 +1,11 @@
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.NoSuchElementException;
 import java.util.Iterator;
 
-public final class ArrayCollection<T> implements Collection<T> {
+public class ArrayCollection<T> implements Collection<T> {
 
-    private T[] m = (T[]) new Object[1];
+    private T[] m = (T[])new Object[1];
 
     private int size;
 
@@ -33,14 +34,16 @@ public final class ArrayCollection<T> implements Collection<T> {
 
     @Override
     public Object[] toArray() {
-        final T[] newM = (T[]) new Object[this.size()];
+        final T[] newM = (T[])new Object[this.size()];
         System.arraycopy(m, 0, newM, 0, this.size());
         return newM;
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
-        return (T1[]) this.toArray();
+    public <T> T[] toArray(final T[] a) {
+        // BEGIN (write your solution here)
+
+        // END
     }
 
     @Override
@@ -91,7 +94,7 @@ public final class ArrayCollection<T> implements Collection<T> {
 
     @Override
     public boolean retainAll(final Collection<?> c) {
-        for (final T item : this) {
+        for (final Object item : this) {
             if (!c.contains(item)) this.remove(item);
         }
         return true;
@@ -99,22 +102,21 @@ public final class ArrayCollection<T> implements Collection<T> {
 
     @Override
     public void clear() {
-        m = (T[]) new Object[1];
+        m = (T[])new Object[1];
         size = 0;
     }
 
     private void remove(final int index) {
         if (index != this.size() - 1)
             System.arraycopy(m, index + 1, m, index, this.size() - index - 1);
-        if (this.size() != 0) {
-            size--;
-        }
+        size--;
     }
 
     private class ElementsIterator implements Iterator<T> {
-        // BEGIN (write your solution here)
-        int index = 0;
-        int countRemove = -1;
+
+        private int index;
+
+        private int last = -1;
 
         @Override
         public boolean hasNext() {
@@ -123,32 +125,18 @@ public final class ArrayCollection<T> implements Collection<T> {
 
         @Override
         public T next() {
-            countRemove = 0;
-            if (!hasNext()) {
+            if (!hasNext())
                 throw new NoSuchElementException();
-            }
-            if(countRemove != 0) {
-                throw new IllegalStateException();
-            }
-
+            last = index;
             return ArrayCollection.this.m[index++];
-
         }
 
         @Override
         public void remove() {
-            if(countRemove != 0) {
-                throw new IllegalStateException();
-            }
-            ArrayCollection.this.remove(m[index-1]);
+            if (last == -1) throw new IllegalStateException();
+            ArrayCollection.this.remove(last);
             index--;
-
-            countRemove++;
-
-
+            last = -1;
         }
-
-
-        // END
     }
 }
