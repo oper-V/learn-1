@@ -9,10 +9,6 @@ public class ArrayCollection<T> implements Collection<T> {
 
     private int size;
 
-    public static void main(String[] args) {
-
-    }
-
     @Override
     public int size() {
         return this.size;
