@@ -9,6 +9,10 @@ public class ArrayCollection<T> implements Collection<T> {
 
     private int size;
 
+    public static void main(String[] args) {
+
+    }
+
     @Override
     public int size() {
         return this.size;
@@ -42,6 +46,21 @@ public class ArrayCollection<T> implements Collection<T> {
     @Override
     public <T> T[] toArray(final T[] a) {
         // BEGIN (write your solution here)
+        if (a.length == size()) {
+            System.arraycopy(m, 0, a, 0, this.size());
+        }
+        else if (a.length > size()) {
+            System.arraycopy(m, 0, a, 0, this.size());
+            add(null);
+        }
+        else if (a.length < size()) {
+            T[] newA =  Arrays.copyOf(a,this.size());
+//            T[] newA = new T[this.size()];
+            System.arraycopy(m, 0, newA, 0, this.size());
+            return  newA;
+        }
+
+        return  a;
 
         // END
     }
