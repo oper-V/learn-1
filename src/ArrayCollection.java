@@ -11,6 +11,10 @@ public class ArrayList<T> implements List<T> {
 
     private int size = 0;
 
+    public static void main(String[] args) {
+
+    }
+
     @Override
     public int size() {
         return this.size;
