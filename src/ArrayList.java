@@ -238,7 +238,7 @@ public class ArrayList<T> implements List<T> {
         @Override
         public boolean hasPrevious() {
             // BEGIN (write your solution here)   hasPrevious
-            return (index > 0 || index <= size);
+            return (index > 0 || index <= ArrayList.this.size());
 
             // END
         }
