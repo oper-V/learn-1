@@ -259,10 +259,10 @@ public class ArrayList<T> implements List<T> {
             if (!hasPrevious()) {
                 throw new NoSuchElementException();
             }
-            //lastIndex = previousIndex(); index--;
-            lastIndex = index--;
-            //return ArrayList.this.array[lastIndex];
-            return ArrayList.this.array[index];
+            lastIndex = previousIndex(); index--;
+            //lastIndex = index--;
+            return ArrayList.this.array[lastIndex];
+            //return ArrayList.this.array[index];
 
             // END
         }
@@ -282,6 +282,12 @@ public class ArrayList<T> implements List<T> {
         // . a ^ b . c . d . e . f .
         public void add(final T element) {
             // BEGIN (write your solution here)  add
+            if (ArrayList.this.isEmpty()) {
+                ArrayList.this.add(element);
+            }
+            else
+                ArrayList.this.add(index,element);
+                index++;
 
 
             // END
@@ -290,6 +296,11 @@ public class ArrayList<T> implements List<T> {
         @Override
         public void set(final T element) {
             // BEGIN (write your solution here)  set
+            if (lastIndex == LAST_IS_NOT_SET) {
+                throw new IllegalStateException();
+            }
+            ArrayList.this.add(lastIndex,element);
+
 
             // END
         }
