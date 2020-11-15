@@ -231,6 +231,11 @@ public class ArrayList<T> implements List<T> {
         @Override
         public int nextIndex() {
             // BEGIN (write your solution here)   nextIndex
+            if (!hasNext()) {
+                return ArrayList.this.size();
+            }
+            else return lastIndex+1;
+
 
             // END
         }
@@ -238,7 +243,7 @@ public class ArrayList<T> implements List<T> {
         @Override
         public boolean hasPrevious() {
             // BEGIN (write your solution here)   hasPrevious
-            return (index > 0 || index <= ArrayList.this.size());
+            return (index > 0 && index <= ArrayList.this.size());
 
             // END
         }
@@ -246,6 +251,11 @@ public class ArrayList<T> implements List<T> {
         @Override
         public T previous() {
             // BEGIN (write your solution here)   previous
+            if (!hasPrevious()) {
+                throw new NoSuchElementException();
+            }
+            lastIndex = previousIndex(); index--;
+            return ArrayList.this.array[lastIndex];
 
             // END
         }
@@ -253,6 +263,10 @@ public class ArrayList<T> implements List<T> {
         @Override
         public int previousIndex() {
             // BEGIN (write your solution here)  previousIndex
+            if (!hasPrevious()) {
+                return LAST_IS_NOT_SET;
+            }
+            else return lastIndex - 1;
 
             // END
         }
@@ -261,6 +275,7 @@ public class ArrayList<T> implements List<T> {
         // . a ^ b . c . d . e . f .
         public void add(final T element) {
             // BEGIN (write your solution here)  add
+
 
             // END
         }
