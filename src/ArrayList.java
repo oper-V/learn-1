@@ -210,6 +210,10 @@ public class ArrayList<T> implements List<T> {
 
         public ElementsIterator(final int index) {
             // BEGIN (write your solution here)  ElementsIterator
+            if (index < 0 || index > ArrayList.this.size()) {
+                throw new IndexOutOfBoundsException();
+            }
+            this.index = index;
 
             // END
         }
@@ -234,7 +238,8 @@ public class ArrayList<T> implements List<T> {
             if (!hasNext()) {
                 return ArrayList.this.size();
             }
-            else return lastIndex+1;
+            //else return lastIndex+1;
+            else return index;
 
 
             // END
@@ -254,8 +259,10 @@ public class ArrayList<T> implements List<T> {
             if (!hasPrevious()) {
                 throw new NoSuchElementException();
             }
-            lastIndex = previousIndex(); index--;
-            return ArrayList.this.array[lastIndex];
+            //lastIndex = previousIndex(); index--;
+            lastIndex = index--;
+            //return ArrayList.this.array[lastIndex];
+            return ArrayList.this.array[index];
 
             // END
         }
@@ -266,7 +273,7 @@ public class ArrayList<T> implements List<T> {
             if (!hasPrevious()) {
                 return LAST_IS_NOT_SET;
             }
-            else return lastIndex - 1;
+            else return index - 1 ;
 
             // END
         }
