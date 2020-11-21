@@ -284,6 +284,7 @@ public class ArrayList<T> implements List<T> {
             // BEGIN (write your solution here)  add
             if (ArrayList.this.isEmpty()) {
                 ArrayList.this.add(element);
+                index++;
             }
             else
                 ArrayList.this.add(index,element);

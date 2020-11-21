@@ -288,12 +288,12 @@ public class ArrayListTest {
 
         final Integer next = listIterator.next();
         final Integer previous = listIterator.previous();
-        assertEquals("From the documentation: \nNote that alternating calls to next(0) "
+        assertEquals("From the documentation: \nNote that alternating calls to next() "
                         + "and previous() will return the same element repeatedly ",
                 next,
                 previous);
 
-        assertEquals("From the documentation: \nNote that alternating calls to next(1) "
+        assertEquals("From the documentation: \nNote that alternating calls to next() "
                         + "and previous() will return the same element repeatedly ",
                 listIterator.next(),
                 listIterator.previous());
