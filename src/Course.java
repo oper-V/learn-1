@@ -30,6 +30,14 @@ public class Course {
     @Override
     public boolean equals(final Object object) {
         // BEGIN (write your solution here)
+        if (!(object instanceof Course)) {
+            return false;
+        }
+        if (this.getUuid().longValue() == ((Course) object).getUuid().longValue() ) {
+            return true;
+        } else {
+            return  false;
+        }
 
         // END
     }
@@ -53,6 +61,15 @@ public class Course {
         @Override
         public boolean equals(final Object object) {
             // BEGIN (write your solution here)
+            if (!(object instanceof Session)) {
+                return false;
+            }
+            if (this.getStartDate().equals(((Session) object).getStartDate()) & this.getCourse().uuid.longValue() == ((Session) object).getCourse().uuid.longValue()) {
+                return true;
+            } else {
+                return false;
+            }
+
 
             // END
         }
