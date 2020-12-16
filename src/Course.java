@@ -40,6 +40,17 @@ public class Course {
     @Override
     public int hashCode() {
         // BEGIN (write your solution here)
+        int hash = 0;
+        if (this.getUuid() == null || this.getUuid().length() == 0) {
+            return 0;
+        } else {
+            char a[] = getUuid().toCharArray();
+            for (int i = 0; i < this.getUuid().length(); i++) {
+                hash = hash + a[i];
+            }
+            return hash;
+
+        }
 
         // END
     }
@@ -77,6 +88,7 @@ public class Course {
         @Override
         public int hashCode() {
             // BEGIN (write your solution here)
+            return getStartDate().hashCode();
 
             // END
         }
