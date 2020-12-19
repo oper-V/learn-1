@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<T> implements List<T> {
+public class ArrayList2<T> implements List<T> {
 
     private T[] array = (T[]) new Object[1];
 
@@ -210,7 +210,7 @@ public class ArrayList<T> implements List<T> {
 
         public ElementsIterator(final int index) {
             // BEGIN (write your solution here)  ElementsIterator
-            if (index < 0 || index > ArrayList.this.size()) {
+            if (index < 0 || index > ArrayList2.this.size()) {
                 throw new IndexOutOfBoundsException();
             }
             this.index = index;
@@ -220,7 +220,7 @@ public class ArrayList<T> implements List<T> {
 
         @Override
         public boolean hasNext() {
-            return ArrayList.this.size() > index;
+            return ArrayList2.this.size() > index;
         }
 
         @Override
@@ -229,14 +229,14 @@ public class ArrayList<T> implements List<T> {
                 throw new NoSuchElementException();
             }
             lastIndex = index++; // or lastIndex = nextIndex(); index++;
-            return ArrayList.this.array[lastIndex];
+            return ArrayList2.this.array[lastIndex];
         }
 
         @Override
         public int nextIndex() {
             // BEGIN (write your solution here)   nextIndex
             if (!hasNext()) {
-                return ArrayList.this.size();
+                return ArrayList2.this.size();
             }
             //else return lastIndex+1;
             else return index;
@@ -248,7 +248,7 @@ public class ArrayList<T> implements List<T> {
         @Override
         public boolean hasPrevious() {
             // BEGIN (write your solution here)   hasPrevious
-            return (index > 0 && index <= ArrayList.this.size());
+            return (index > 0 && index <= ArrayList2.this.size());
 
             // END
         }
@@ -261,7 +261,7 @@ public class ArrayList<T> implements List<T> {
             }
             lastIndex = previousIndex(); index--;
             //lastIndex = index--;
-            return ArrayList.this.array[lastIndex];
+            return ArrayList2.this.array[lastIndex];
             //return ArrayList.this.array[index];
 
             // END
@@ -282,12 +282,12 @@ public class ArrayList<T> implements List<T> {
         // . a ^ b . c . d . e . f .
         public void add(final T element) {
             // BEGIN (write your solution here)  add
-            if (ArrayList.this.isEmpty()) {
-                ArrayList.this.add(element);
+            if (ArrayList2.this.isEmpty()) {
+                ArrayList2.this.add(element);
                 index++;
             }
             else
-                ArrayList.this.add(index,element);
+                ArrayList2.this.add(index,element);
                 index++;
 
 
@@ -300,7 +300,7 @@ public class ArrayList<T> implements List<T> {
             if (lastIndex == LAST_IS_NOT_SET) {
                 throw new IllegalStateException();
             }
-            ArrayList.this.add(lastIndex,element);
+            ArrayList2.this.add(lastIndex,element);
 
 
             // END
@@ -341,7 +341,7 @@ public class ArrayList<T> implements List<T> {
             if (lastIndex == LAST_IS_NOT_SET) {
                 throw new IllegalStateException();
             }
-            ArrayList.this.remove(lastIndex);
+            ArrayList2.this.remove(lastIndex);
             index--;
             lastIndex = LAST_IS_NOT_SET;
         }

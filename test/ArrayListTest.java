@@ -8,12 +8,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class ArrayListTest {
-    private ArrayList<Integer> testInstance;
+    private ArrayList2<Integer> testInstance;
     private ListIterator<Integer> listIterator;
 
     @Before
     public void setUp() {
-        testInstance = new ArrayList<>();
+        testInstance = new ArrayList2<>();
         listIterator = testInstance.listIterator();
     }
 
@@ -115,7 +115,7 @@ public class ArrayListTest {
     @Test
     public void testContainsAll() {
 
-        final Collection<Integer> testInstance2 = new ArrayList<>();
+        final Collection<Integer> testInstance2 = new ArrayList2<>();
         testInstance.add(1);
         testInstance.add(2);
 
@@ -141,7 +141,7 @@ public class ArrayListTest {
     @Test
     public void testRemoveAll() {
 
-        final Collection<Integer> testInstance2 = new ArrayList<>();
+        final Collection<Integer> testInstance2 = new ArrayList2<>();
         testInstance.add(1);
         testInstance.add(2);
 
@@ -157,7 +157,7 @@ public class ArrayListTest {
     @Test
     public void testRetainAll() {
 
-        final Collection<Integer> testInstance2 = new ArrayList<>();
+        final Collection<Integer> testInstance2 = new ArrayList2<>();
         testInstance.add(1);
         testInstance.add(2);
 
@@ -243,7 +243,7 @@ public class ArrayListTest {
 
     @Test
     public void testNext() {
-        List<Character> testInstance2 = new ArrayList<>();
+        List<Character> testInstance2 = new ArrayList2<>();
         final ListIterator<Character> listIterator2 = testInstance2.listIterator();
         //                      // index
         testInstance2.add('a'); // 0
@@ -363,7 +363,7 @@ public class ArrayListTest {
 
     @Test
     public void testAddInIteratorAfterNext() {
-        List<Character> testInstance2 = new ArrayList<>();
+        List<Character> testInstance2 = new ArrayList2<>();
         final ListIterator<Character> listIterator2 = testInstance2.listIterator();
         //                      // index
         testInstance2.add('a'); // 0

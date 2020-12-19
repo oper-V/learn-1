@@ -7,6 +7,10 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public int size() {
         // BEGIN (write your solution here)
+//        int size = 0;
+//        for (Pair p : KeyAndValues) size++;
+//        return size;
+        return KeyAndValues.size();
 
         // END
     }
@@ -14,6 +18,7 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public boolean isEmpty() {
         // BEGIN (write your solution here)
+        return KeyAndValues.size() == 0;
 
         // END
     }
@@ -21,13 +26,24 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public boolean containsKey(Object key) {
         // BEGIN (write your solution here)
+        K forTestKey = (K) key;
+        for (Pair p : KeyAndValues) {
+            if(forTestKey==null ? p.key==null : p.key.equals(forTestKey)) return true;
+        }
 
+        return false;
         // END
     }
 
     @Override
     public boolean containsValue(Object value) {
         // BEGIN (write your solution here)
+        V forTestValue = (V) value;
+        for (Pair p : KeyAndValues) {
+            if(forTestValue==null ? p.value==null : p.value.equals(forTestValue)) return true;
+        }
+
+        return false;
 
         // END
     }
@@ -35,6 +51,13 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public V get(Object key) {
         // BEGIN (write your solution here)
+        K forTestKey = (K) key;
+        for (Pair p : KeyAndValues) {
+            if(forTestKey==null ? p.key==null : p.key.equals(forTestKey)) {
+                return p.getValue();
+            }
+        }
+        return null;
 
         // END
     }
@@ -42,6 +65,17 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public V put(K key, V value) {
         // BEGIN (write your solution here)
+        K forTestKey = (K) key;
+        if(this.containsKey(forTestKey)) {
+            for (Pair p : KeyAndValues) {
+                if(forTestKey==null ? p.key==null : p.key.equals(forTestKey)) return p.setValue(value);
+            }
+
+        } else {
+            Pair newPair = new Pair(key, value);
+            KeyAndValues.add(newPair);
+        }
+        return  null;
 
         // END
     }
@@ -49,19 +83,29 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public V remove(Object key) {
         // BEGIN (write your solution here)
-
+        K forTestKey = (K) key;
+        if(!this.containsKey(forTestKey)) return null;
+        for (Pair p : KeyAndValues) {
+            if(forTestKey==null ? p.key==null : p.key.equals(forTestKey)) {
+                final V oldValue = p.value;
+                KeyAndValues.remove(p);
+                return oldValue;
+            }
+        }
+        return null;
         // END
     }
 
     @Override
     public void putAll(Map<? extends K, ? extends V> m) {
-        for (Map.Entry<K, V> e : (Set<Map.Entry<K, V>>)(Set)m.entrySet())
+        for (Entry<K, V> e : (Set<Entry<K, V>>)(Set)m.entrySet())
             put(e.getKey(), e.getValue());
     }
 
     @Override
     public void clear() {
         // BEGIN (write your solution here)
+        KeyAndValues.clear();
 
         // END
     }
@@ -76,6 +120,16 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public Collection<V> values() {
         // BEGIN (write your solution here)
+//        if(KeyAndValues.isEmpty()) {
+//            return null;
+//        } else {
+//            return (Collection<V>) KeyAndValues.subList(0,KeyAndValues.size()-1);
+            Collection<V> collectionForReturn = new ArrayList<>();
+            for (Pair p : KeyAndValues) {
+                collectionForReturn.add(p.value);
+            }
+            return collectionForReturn;
+//        }
 
         // END
     }
@@ -85,7 +139,7 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
         return (Set<Entry<K, V>>)(Set)new HashSet<>(KeyAndValues);
     }
 
-    private class Pair implements Map.Entry<K, V> {
+    private class Pair implements Entry<K, V> {
 
         private final K key;
 
@@ -115,7 +169,7 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
         public boolean equals(Object o) {
             if (this == o) return true;
 
-            Map.Entry<K, V> pair = (Map.Entry<K, V>) o;
+            Entry<K, V> pair = (Entry<K, V>) o;
 
 
             if (key != null ? !key.equals(pair.getKey()) : pair.getKey() != null) return false;

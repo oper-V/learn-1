@@ -146,7 +146,7 @@ public class ArrayBasedMapTest {
     protected final void assertInvariants(Map<String, Student> map) {
         Set<String> keySet = map.keySet();
         Collection<Student> valueCollection = map.values();
-        Set<Map.Entry<String, Student>> entrySet = map.entrySet();
+        Set<Entry<String, Student>> entrySet = map.entrySet();
 
         assertEquals(map.size() == 0, map.isEmpty());
         assertEquals(map.size(), keySet.size());
