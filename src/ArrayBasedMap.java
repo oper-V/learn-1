@@ -51,6 +51,11 @@ public class ArrayBasedMap<K, V> implements Map<K, V> {
     @Override
     public V getOrDefault(Object key, V defaultValue) {
         // BEGIN (write your solution here)
+        if (this.containsKey(key)) {
+            return this.get(key);
+        } else {
+            return defaultValue;
+        }
 
         // END
     }
