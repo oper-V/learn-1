@@ -84,9 +84,13 @@ public class HashSet<T> implements Set<T> {
     @Override
     public boolean containsAll(Collection<?> c) {
         // BEGIN (write your solution here)
+        if(c == null) {
+            return false;
+        }
         for(Object el: c) {
-           if(!elements.containsKey(el));
-           return false;
+           if(!this.contains(el)) {
+               return false;
+           }
         }
 
         return true;
@@ -130,12 +134,16 @@ public class HashSet<T> implements Set<T> {
     @Override
     public boolean removeAll(Collection<?> c) {
         // BEGIN (write your solution here)
-        if(!this.containsAll(c)) {
-            return false;
-        }
+        int startSize = this.size();
+//        if(!this.containsAll(c)) {
+//            return false;
+//        }
         for(Object el: c) {
             if(!elements.containsKey(el));
                 this.remove(el);
+        }
+        if(startSize == this.size()) {
+            return false;
         }
         return true;
 
@@ -152,25 +160,14 @@ public class HashSet<T> implements Set<T> {
 
     @Override
     public boolean equals(Object o) {
-        // BEGIN (write your solution here)
-        if(o == null & elements == null) return  true;
-        if(o.getClass() == this.getClass()) {
-            HashSet<T> testObject = (HashSet<T>) o;
-            if (testObject.size() == this.size() && this.containsAll((Collection<?>) testObject)) return  true;
-
-        }
-
-        return  false;
-
-        // END
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HashSet<?> hashSet = (HashSet<?>) o;
+        return Objects.equals(elements, hashSet.elements);
     }
 
     @Override
     public int hashCode() {
-        // BEGIN (write your solution here)
-        return 0;
-
-
-        // END
+        return Objects.hash(elements);
     }
 }

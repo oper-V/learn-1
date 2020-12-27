@@ -46,6 +46,7 @@ public class CustomHashSetTest {
                 s.contains("1"));
 
         // test containsAll
+//        s.containsAll(s2);
         assertTrue("The containsAll() method does not find all elements of the incoming "
                         + "collection in the current collection. But they are here!",
                 s.containsAll(s2));
